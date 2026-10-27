@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Molly Chi · Résumé</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #2d2226; --soft: #6b5a60; --line: #e3d8cf; --accent: #b4553f; --tint: #fbf4ec;
+      --font: "Inter", "Noto Sans TC", system-ui, -apple-system, "PingFang TC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: #ece6df; color: var(--ink); font-family: var(--font); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: none; }
+
+    .toolbar {
+      position: sticky; top: 0; z-index: 2;
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
+      padding: 10px 16px; background: #ece6dfee; backdrop-filter: blur(4px);
+    }
+    .toolbar .group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tb {
+      font: 600 13px/1 var(--font); color: var(--ink); background: #fff;
+      border: 2px solid var(--ink); border-radius: 6px; padding: 8px 12px; cursor: pointer;
+      box-shadow: 0 2px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;
+    }
+    .tb.primary { background: var(--accent); color: #fff; }
+    .tb:focus-visible { outline: 3px solid #4a90b8; outline-offset: 2px; }
+
+    /* A4 sheet */
+    .sheet {
+      width: 210mm; min-height: 297mm; margin: 8px auto 40px; background: #fff;
+      padding: 13mm 13mm 11mm; box-shadow: 0 2px 18px rgba(0,0,0,.12);
+      font-size: 8.9pt; line-height: 1.5;
+    }
+    .sheet.en { font-size: 8.6pt; }
+    header.top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 9px; border-bottom: 2.5px solid var(--ink); }
+    header.top h1 { font-size: 25pt; line-height: 1; margin: 0 0 5px; letter-spacing: -.01em; }
+    header.top .headline { margin: 0; font-size: 10.5pt; font-weight: 600; color: var(--accent); }
+    header.top .contact { text-align: right; font-size: 8.4pt; color: var(--soft); line-height: 1.6; }
+    header.top .contact b { color: var(--ink); font-weight: 600; }
+
+    .cols { display: grid; grid-template-columns: 1fr 48mm; gap: 6mm; margin-top: 10px; }
+    h2 {
+      font-size: 9.2pt; text-transform: uppercase; letter-spacing: .08em; color: var(--accent);
+      margin: 11px 0 5px; padding-bottom: 3px; border-bottom: 1px solid var(--line);
+    }
+    .cols > div > h2:first-child { margin-top: 0; }
+    p { margin: 0 0 4px; }
+    .summary { text-align: justify; }
+
+    .strengths { margin: 0; padding: 7px 10px 7px 22px; background: var(--tint); border-radius: 6px; }
+    .strengths li { margin-bottom: 2px; }
+    .strengths li:last-child { margin-bottom: 0; }
+    .job { margin-bottom: 7px; }
+    .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .job-head h3 { font-size: 10pt; margin: 0; }
+    .job-head h3 small { font-weight: 500; color: var(--soft); font-size: 8.8pt; }
+    .job-head .period { font-size: 8.3pt; color: var(--soft); white-space: nowrap; }
+    .job .lead { font-size: 8.5pt; color: #4a3c41; font-style: italic; margin: 1px 0 2px; }
+    .projects { margin-top: 2px; }
+    .projects > li { margin-bottom: 2px; }
+    .projects > li.group { list-style: none; margin-left: -13px; }
+    .projects > li.group > ul { margin-top: 0; }
+    ul { margin: 1px 0 0; padding-left: 13px; }
+    li { margin: 0 0 1px; }
+    li::marker { color: var(--accent); }
+
+    aside h2 { margin-top: 12px; }
+    .skill { margin-bottom: 5px; }
+    .skill b { display: block; font-size: 8.6pt; }
+    .skill span { font-size: 8.1pt; color: #4a3c41; }
+    .edu { margin-bottom: 5px; }
+    .edu b { display: block; font-size: 8.7pt; }
+    .edu span { display: block; font-size: 8.1pt; color: #4a3c41; }
+    .edu small { color: var(--soft); font-size: 7.9pt; }
+    .plain { list-style: none; padding: 0; margin: 0; font-size: 8.3pt; }
+    .plain li { margin-bottom: 1px; }
+
+    @media screen and (max-width: 860px) {
+      .sheet { width: auto; min-height: 0; margin: 0 0 24px; padding: 20px 16px; font-size: 13.5px; box-shadow: none; }
+      header.top { flex-direction: column; align-items: flex-start; }
+      header.top .contact { text-align: left; }
+      .cols { grid-template-columns: 1fr; }
+      .skill span, .edu span, .plain, .job .lead { font-size: 12.5px; }
+      .job-head { flex-wrap: wrap; }
+    }
+    @page { size: A4; margin: 0; }
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; overflow: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar">
+    <div class="group">
+      <a class="tb" href="index.html" id="backLink">🏘</a>
+      <button class="tb" id="langBtn"></button>
+    </div>
+    <div class="group">
+      <a class="tb primary" id="dlBtn" download></a>
+      <button class="tb" onclick="window.print()" id="printBtn"></button>
+    </div>
+  </nav>
+  <main class="sheet" id="sheet"></main>
+
+  <script src="data.js?v=20261026i"></script>
+  <script>
+  (() => {
+    const LABELS = {
+      zh: { back: "🏘 回小鎮", print: "🖨 列印", dl: "⬇ 下載 PDF", other: "English", summary: "摘要", strengths: "核心強項", exp: "工作經歷", skills: "技能", edu: "學歷", certs: "證照", langs: "語言", more: "其他", interests: "興趣：", file: "assets/Molly_Chi_Resume_ZH.pdf" },
+      en: { back: "🏘 Back to town", print: "🖨 Print", dl: "⬇ Download PDF", other: "中文", summary: "Summary", strengths: "Core strengths", exp: "Experience", skills: "Skills", edu: "Education", certs: "Certificates", langs: "Languages", more: "More", interests: "Interests: ", file: "assets/Molly_Chi_Resume_EN.pdf" },
+    };
+    const params = new URLSearchParams(location.search);
+    let lang = params.get("lang");
+    if (!LABELS[lang]) { try { lang = localStorage.getItem("town-lang"); } catch (e) {} }
+    if (!LABELS[lang]) lang = ((navigator.languages && navigator.languages[0]) || navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const bare = (u) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+
+    function render() {
+      const R = window.RESUME[lang], L = LABELS[lang];
+      document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+      document.getElementById("sheet").className = `sheet ${lang}`;
+      document.title = `${R.name} · ${lang === "zh" ? "履歷" : "Résumé"}`;
+      document.getElementById("backLink").textContent = L.back;
+      document.getElementById("backLink").href = `index.html?lang=${lang}`;
+      document.getElementById("langBtn").textContent = L.other;
+      document.getElementById("printBtn").textContent = L.print;
+      const dl = document.getElementById("dlBtn");
+      dl.textContent = L.dl; dl.href = L.file; dl.setAttribute("download", L.file.split("/").pop());
+
+      // one-point projects collapse into a single bullet to keep the page to one sheet
+      const proj = (p) => {
+        const t = p.url ? `<a href="${esc(p.url)}">${esc(p.title)}</a>` : esc(p.title);
+        return p.points.length === 1
+          ? `<li><b>${t}</b>${lang === "zh" ? "：" : ": "}${esc(p.points[0])}</li>`
+          : `<li class="group"><b>${t}</b><ul>${p.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></li>`;
+      };
+      const job = (j) => `<div class="job">
+        <div class="job-head"><h3>${esc(j.company)} <small>· ${esc(j.role)}</small></h3><span class="period">${esc(j.period)}</span></div>
+        ${j.lead ? `<p class="lead">${esc(j.lead)}</p>` : ""}
+        <ul class="projects">${j.projects.map(proj).join("")}</ul>
+      </div>`;
+
+      document.getElementById("sheet").innerHTML = `
+        <header class="top">
+          <div><h1>${esc(R.name)}</h1><p class="headline">${esc(R.title)} — ${esc(R.headline)}</p></div>
+          <div class="contact">
+            <b><a href="mailto:${esc(R.email)}">${esc(R.email)}</a></b><br>
+            ${R.links.map((l) => `<a href="${esc(l.url)}">${esc(bare(l.url))}</a>`).join("<br>")}<br>
+            ${esc(R.location)}
+          </div>
+        </header>
+        <div class="cols">
+          <div>
+            <h2>${L.summary}</h2><p class="summary">${esc(R.summary)}</p>
+            <h2>${L.strengths}</h2>
+            <ul class="strengths">${R.strengths.map((s) => `<li><b>${esc(s.title)}</b>${lang === "zh" ? "：" : " — "}${esc(s.text)}</li>`).join("")}</ul>
+            <h2>${L.exp}</h2>${R.jobs.map(job).join("")}
+          </div>
+          <aside>
+            <h2>${L.skills}</h2>${R.skills.map((g) => `<div class="skill"><b>${esc(g.group)}</b><span>${g.list.map(esc).join(" · ")}</span></div>`).join("")}
+            <h2>${L.edu}</h2>${R.education.map((e) => `<div class="edu"><b>${esc(e.school)}</b><span>${esc(e.program)}</span><small>${esc(e.period)}</small></div>`).join("")}
+            <h2>${L.certs}</h2><ul class="plain">${R.certs.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
+            <h2>${L.langs}</h2><ul class="plain">${R.languages.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
+            <h2>${L.more}</h2><ul class="plain"><li>${esc(R.extra)}</li><li>${L.interests}${R.interests.map(esc).join(lang === "zh" ? "、" : ", ")}</li></ul>
+          </aside>
+        </div>`;
+    }
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      try { localStorage.setItem("town-lang", lang); } catch (e) {}
+      history.replaceState(null, "", `?lang=${lang}`);
+      render();
+    });
+    render();
+  })();
+  </script>
+</body>
+</html>
