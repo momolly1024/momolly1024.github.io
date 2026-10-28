@@ -88,7 +88,7 @@ window.RESUME = {
       { year: "2024", text: "加入華碩，主導 AIoT 工安監控與 AI 平台前端，並導入 AI agent 開發流程。" },
     ],
     interests: ["健身", "爬山", "SUP", "旅行", "桌球"],
-    hobbies: "Molly 下班喜歡健身、爬山、玩 SUP、旅行，還有打桌球！",
+    hobbies: "Molly 很愛用 AI 解決生活小事：自己做了旅遊影片自動剪輯流程，還做了串 LINE 取得 PTT 文章連結的機器人！下班後則是健身、爬山、SUP、旅行、打桌球。",
     caseStudy: {
       title: "案例研究：AI 工安監控的 ROI 設定體驗",
       sub: "華碩 AIS EHS · 獨立主導前端與互動設計",
@@ -137,7 +137,7 @@ window.RESUME = {
     },
     places: {
       home: ["Molly 的家", "關於我"], asus: ["華碩 ASUS", "2024 – 現在"], cognito: ["美思科技", "2022 – 2024"],
-      koo: ["和信治癌中心", "2020 – 2022"], school: ["學校", "學歷・證照"], skills: ["技能工坊", "專長"], studio: ["設計工作室", "UX 案例"],
+      koo: ["和信治癌中心", "2020 – 2022"], school: ["學校", "學歷・證照"], skills: ["技能工坊", "專長"], studio: ["設計工作室", "UX 案例集"],
     },
     npcs: {
       guide: ["歡迎來到 Molly 的小鎮！", "走進每棟房子就能看到她的履歷，一共 7 個地方，全部逛完有驚喜喔。"],
@@ -227,7 +227,7 @@ window.RESUME = {
       { year: "2024", text: "Joined ASUS to lead frontends for AIoT safety monitoring and AI platforms, and brought AI agents into the team's workflow." },
     ],
     interests: ["Fitness", "Hiking", "Stand-up paddleboarding", "Travel", "Table tennis"],
-    hobbies: "After work Molly loves fitness, hiking, stand-up paddleboarding, travel and table tennis!",
+    hobbies: "Molly loves using AI for everyday things: she built her own travel-vlog auto-editing pipeline and a LINE bot that fetches PTT article links! Off-screen: fitness, hiking, SUP, travel and table tennis.",
     caseStudy: {
       title: "Case study: ROI setup UX for AI safety monitoring",
       sub: "ASUS AIS EHS · I solely led the frontend and interaction design",
@@ -275,7 +275,7 @@ window.RESUME = {
     },
     places: {
       home: ["Molly's Home", "About me"], asus: ["ASUS", "2024 – now"], cognito: ["Cognito Health", "2022 – 2024"],
-      koo: ["Koo Cancer Center", "2020 – 2022"], school: ["School", "Education"], skills: ["Skill Workshop", "Skills"], studio: ["Design Studio", "UX case study"],
+      koo: ["Koo Cancer Center", "2020 – 2022"], school: ["School", "Education"], skills: ["Skill Workshop", "Skills"], studio: ["Design Studio", "UX case studies"],
     },
     npcs: {
       guide: ["Welcome to Molly's town!", "Step into each house to read her résumé — 7 places in total, and there's a surprise when you've seen them all."],

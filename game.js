@@ -363,6 +363,7 @@
   try { JSON.parse(localStorage.getItem("town-visited") || "[]").forEach((id) => { if (BUILDINGS.some((b) => b.id === id)) visited.add(id); }); } catch (e) {}
   let celebrated = visited.size >= BUILDINGS.length;
   let lastFocus = null;
+  let caseIdx = 0; // which UX case is open in the design studio
 
   function esc(s) { return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
   const chips = (list, cls = "") => list && list.length ? `<ul class="chips ${cls}">${list.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : "";
@@ -404,7 +405,10 @@
         ${R.skills.map((g, i) => `<h3>${esc(g.group)}</h3>${chips(g.list, i < 2 ? "strong" : "")}`).join("")}`;
     },
     studio: () => {
-      const C = D().caseStudy, L = C.labels, colon = lang === "zh" ? "：" : ": ";
+      const all = [Object.assign({ id: "ehs-roi" }, D().caseStudy), ...((window.UX_CASE_STUDIES || {})[lang] || [])];
+      if (caseIdx >= all.length) caseIdx = 0;
+      const C = all[caseIdx], L = C.labels, colon = lang === "zh" ? "：" : ": ";
+      const short = (t) => t.replace(/^(案例研究：|Case study: )/, "");
       const scene = (fit) => `<svg viewBox="0 0 220 140" role="img" aria-label="${esc(fit ? C.figure.after : C.figure.before)}">
         <rect width="220" height="140" rx="6" fill="#33424d"/><rect y="70" width="220" height="70" fill="#3d4f5b"/>
         <rect x="18" y="40" width="34" height="46" rx="3" fill="#5c6b75"/><rect x="178" y="30" width="28" height="60" rx="3" fill="#5c6b75"/>
@@ -413,17 +417,24 @@
         ${fit ? `<polygon points="60,135 110,135 175,20 140,20" fill="#8fc65a" fill-opacity=".45" stroke="#8fc65a" stroke-width="2.5"/>
           ${[[60, 135], [110, 135], [175, 20], [140, 20]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5" fill="#fff" stroke="#3f2832" stroke-width="2"/>`).join("")}` : ""}
       </svg>`;
-      return `<h2 id="panelTitle">${esc(C.title)}</h2><p class="sub"><b>${esc(C.sub)}</b></p>
+      // only the ROI case has a drawn illustration; the others show before/after as text cards
+      const figure = C.id === "ehs-roi"
+        ? `<div class="figure"><figure>${scene(false)}<figcaption>✕ ${esc(C.figure.before)}</figcaption></figure><figure>${scene(true)}<figcaption>✓ ${esc(C.figure.after)}</figcaption></figure></div>`
+        : `<div class="figure text"><div class="ba before"><b>✕</b>${esc(C.figure.before)}</div><div class="ba after"><b>✓</b>${esc(C.figure.after)}</div></div>`;
+      return `<p class="eyebrow-sm">${lang === "zh" ? "UX 案例集" : "UX case studies"} · ${caseIdx + 1}/${all.length}</p>
+        <ol class="case-tabs">${all.map((c, i) => `<li><button type="button" data-case="${i}" class="${i === caseIdx ? "on" : ""}">${i + 1}. ${esc(short(c.title))}</button></li>`).join("")}</ol>
+        <h2 id="panelTitle">${esc(C.title)}</h2><p class="sub"><b>${esc(C.sub)}</b></p>
         <h3>${esc(L.context)}</h3><p>${esc(C.context)}</p>
         <h3>${esc(L.challenges)}</h3><ul>${C.challenges.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-        <div class="figure"><figure>${scene(false)}<figcaption>✕ ${esc(C.figure.before)}</figcaption></figure><figure>${scene(true)}<figcaption>✓ ${esc(C.figure.after)}</figcaption></figure></div>
+        ${figure}
         <h3>${esc(L.decisions)}</h3>
         ${C.decisions.map((d, i) => `<div class="card decision"><h3><span class="num">${i + 1}</span>${esc(d.title)}</h3>
           <p><b>${esc(L.how)}${colon}</b>${esc(d.how)}</p><p class="why"><b>${esc(L.why)}${colon}</b>${esc(d.why)}</p></div>`).join("")}
         <h3>${esc(L.flow)}</h3><ol class="flow">${C.flow.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
-        <h3>${esc(L.tech)}</h3><p>${esc(C.tech)}</p>
-        <h3>${esc(L.results)}</h3><ul>${C.results.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-        <p class="lead-note">💡 ${esc(C.takeaway)}</p>`;
+        ${C.tech ? `<h3>${esc(L.tech)}</h3><p>${esc(C.tech)}</p>` : ""}
+        ${C.results && C.results.length ? `<h3>${esc(L.results)}</h3><ul>${C.results.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+        <p class="lead-note">💡 ${esc(C.takeaway)}</p>
+        ${caseIdx < all.length - 1 ? `<p class="next-case"><button type="button" class="btn" data-case="${caseIdx + 1}">${lang === "zh" ? "下一個案例" : "Next case"} →</button></p>` : ""}`;
     },
     done: () => `<h2 id="panelTitle">${esc(U().doneTitle)}</h2><p class="sub">${esc(U().doneSub)}</p><p>${esc(U().doneText)}</p>${contactButtons()}`,
   };
@@ -444,7 +455,12 @@
       try { localStorage.setItem("town-visited", JSON.stringify([...visited])); } catch (e) {}
       renderProgress();
     }
-    openPanel(PANELS[b.id]() + `<div class="panel-foot"><span>${isNew ? u.visitedNew : u.visitedOld} · ${visited.size}/${BUILDINGS.length}</span><button class="btn" data-close>${esc(u.leave)}</button></div>`);
+    if (b.id === "studio") caseIdx = 0;
+    openPanel(PANELS[b.id]() + panelFoot(b, isNew));
+  }
+  function panelFoot(b, isNew = false) {
+    const u = U();
+    return `<div class="panel-foot"><span>${isNew ? u.visitedNew : u.visitedOld} · ${visited.size}/${BUILDINGS.length}</span><button class="btn" data-close>${esc(u.leave)}</button></div>`;
   }
   function closePanel() {
     panelOverlay.hidden = true;
@@ -457,7 +473,17 @@
     }
   }
   document.getElementById("panelClose").addEventListener("click", closePanel);
-  panelOverlay.addEventListener("click", (e) => { if (e.target === panelOverlay || e.target.closest("[data-close]")) closePanel(); });
+  panelOverlay.addEventListener("click", (e) => {
+    const pick = e.target.closest("[data-case]");
+    if (pick) {
+      caseIdx = Number(pick.dataset.case);
+      panelBody.innerHTML = PANELS.studio() + panelFoot(BUILDINGS.find((b) => b.id === "studio"));
+      panelOverlay.querySelector(".panel").scrollTop = 0;
+      play("click", 0.3);
+      return;
+    }
+    if (e.target === panelOverlay || e.target.closest("[data-close]")) closePanel();
+  });
 
   const progressEl = document.getElementById("progress");
   function renderProgress() {
