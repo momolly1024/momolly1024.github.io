@@ -24,7 +24,7 @@ window.RESUME = {
     ],
     jobs: [
       {
-        id: "asus", company: "華碩電腦 ASUSTeK", role: "軟體研發工程師（專員）", period: "2024/5 – 現在",
+        id: "asus", company: "華碩電腦 ASUSTeK", role: "軟體研發工程師", period: "2024/5 – 現在",
         lead: "在團隊導入並迭代 AI agent 開發流程（Spec → AI 實作 → 審查驗證）：中型功能交付從約 15 天縮短到 5 天，bug 明顯減少，修復時間從約 5 天縮短到 1 天。",
         projects: [
           { title: "AI CCTV 工安監控平台（AIS EHS）", url: URL_EHS, points: [
@@ -86,7 +86,6 @@ window.RESUME = {
       { year: "2020", text: "職訓局前端課程結訓，進入和信治癌中心成為前端工程師。" },
       { year: "2022", text: "加入智慧醫療公司美思科技，獨立開發 App 與後台系統。" },
       { year: "2024", text: "加入華碩，主導 AIoT 工安監控與 AI 平台前端，並導入 AI agent 開發流程。" },
-      { year: "2026", text: "由高級工程師晉升專員。" },
     ],
     interests: ["健身", "爬山", "SUP", "旅行", "桌球"],
     hobbies: "Molly 很愛用 AI 解決生活小事：自己做了旅遊影片自動剪輯流程，還做了串 LINE 取得 PTT 文章連結的機器人！下班後則是健身、爬山、SUP、旅行、打桌球。",
@@ -226,7 +225,6 @@ window.RESUME = {
       { year: "2020", text: "Finished a frontend program and joined Koo Foundation Sun Yat-Sen Cancer Center as a frontend developer." },
       { year: "2022", text: "Joined digital-health startup Cognito Health and built its mobile app and admin systems." },
       { year: "2024", text: "Joined ASUS to lead frontends for AIoT safety monitoring and AI platforms, and brought AI agents into the team's workflow." },
-      { year: "2026", text: "Promoted from Senior Engineer to Specialist grade at ASUS." },
     ],
     interests: ["Fitness", "Hiking", "Stand-up paddleboarding", "Travel", "Table tennis"],
     hobbies: "Molly loves using AI for everyday things: she built her own travel-vlog auto-editing pipeline and a LINE bot that fetches PTT article links! Off-screen: fitness, hiking, SUP, travel and table tennis.",
