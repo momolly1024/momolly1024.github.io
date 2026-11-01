@@ -417,9 +417,23 @@
         ${fit ? `<polygon points="60,135 110,135 175,20 140,20" fill="#8fc65a" fill-opacity=".45" stroke="#8fc65a" stroke-width="2.5"/>
           ${[[60, 135], [110, 135], [175, 20], [140, 20]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5" fill="#fff" stroke="#3f2832" stroke-width="2"/>`).join("")}` : ""}
       </svg>`;
-      // only the ROI case has a drawn illustration; the others show before/after as text cards
-      const figure = C.id === "ehs-roi"
-        ? `<div class="figure"><figure>${scene(false)}<figcaption>✕ ${esc(C.figure.before)}</figcaption></figure><figure>${scene(true)}<figcaption>✓ ${esc(C.figure.after)}</figcaption></figure></div>`
+      // toolbar: label + date picker are 44 tall; buttons are 38 (top-aligned) before the fix, 44 and centered after
+      const toolbar = (fit) => {
+        const h = fit ? 30 : 25, y = 55;
+        const btns = [128, 156, 184].map((x, i) => `<rect x="${x}" y="${y}" width="24" height="${h}" rx="3" fill="${i === 1 ? "#e4654f" : "#4a90c2"}"/>`).join("");
+        return `<svg viewBox="0 0 220 140" role="img" aria-label="${esc(fit ? C.figure.after : C.figure.before)}">
+        <rect width="220" height="140" rx="6" fill="#f4efe6"/><rect x="0" y="40" width="220" height="60" fill="#fff"/>
+        <rect x="6" y="55" width="44" height="30" rx="3" fill="#e9e4da"/>
+        <rect x="54" y="55" width="68" height="30" rx="4" fill="#fff" stroke="#9aa3aa" stroke-width="1.5"/>
+        <rect x="62" y="67" width="40" height="6" rx="2" fill="#9aa3aa"/>${btns}
+        <line x1="2" y1="85" x2="218" y2="85" stroke="${fit ? "#8fc65a" : "#e4654f"}" stroke-width="1.5" stroke-dasharray="4 3"/>
+        ${fit ? "" : `<path d="M196 81v4" stroke="#e4654f" stroke-width="2"/><text x="208" y="112" text-anchor="end" font-size="13" font-weight="700" fill="#e4654f">4–6px</text>`}
+      </svg>`;
+      };
+      // the ROI and 4px cases have drawn illustrations; the others show before/after as text cards
+      const draw = C.id === "ehs-roi" ? scene : C.id === "phm-toolbar-4px" ? toolbar : null;
+      const figure = draw
+        ? `<div class="figure"><figure>${draw(false)}<figcaption>✕ ${esc(C.figure.before)}</figcaption></figure><figure>${draw(true)}<figcaption>✓ ${esc(C.figure.after)}</figcaption></figure></div>`
         : `<div class="figure text"><div class="ba before"><b>✕</b>${esc(C.figure.before)}</div><div class="ba after"><b>✓</b>${esc(C.figure.after)}</div></div>`;
       return `<p class="eyebrow-sm">${lang === "zh" ? "UX 案例集" : "UX case studies"} · ${caseIdx + 1}/${all.length}</p>
         <ol class="case-tabs">${all.map((c, i) => `<li><button type="button" data-case="${i}" class="${i === caseIdx ? "on" : ""}">${i + 1}. ${esc(short(c.title))}</button></li>`).join("")}</ol>

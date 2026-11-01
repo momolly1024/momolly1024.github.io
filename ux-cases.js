@@ -352,6 +352,67 @@ window.UX_CASE_STUDIES = {
         "results": "成果",
         "takeaway": "心得"
       }
+    },
+    {
+      "id": "phm-toolbar-4px",
+      "title": "案例研究：看得出別人看不出的 4px",
+      "sub": "華碩 AIS PHM · 事件日誌頁 · 發現並修正 UI 細節",
+      "context": "事件日誌的工具列由左到右是「已選：0 / 0 事件記錄」標籤、日期區間選擇器，以及「匯出」「刪除」「報警設置」三個按鈕。乍看整齊，但用起來總覺得這排「怪怪的、不夠精緻」，卻說不出問題在哪。",
+      "challenges": [
+        "日期選擇器與左側標籤高約 44px，三個按鈕約 38px。",
+        "工具列是頂端對齊：上緣切齊，下緣卻差了 4–6px。",
+        "按鈕的文字基線也比日期文字高一點，形成說不出的違和感。",
+        "根因：日期元件與按鈕各自沿用 UI 套件預設高度與 padding，沒有共用的「控制元件高度」規格，也沒人把同一排的元件當成一組來檢查。"
+      ],
+      "figure": {
+        "before": "頂端對齊：按鈕矮 4–6px，下緣與文字基線都錯開",
+        "after": "修正後：同一排等高、置中，基線一致"
+      },
+      "decisions": [
+        {
+          "title": "已修正：讓同一排等高、置中對齊",
+          "how": "把按鈕與日期選擇器調成同樣高度，工具列改為置中對齊；修正本身只是幾行樣式。",
+          "why": "上下緣與文字基線一對齊，那排「怪怪的」感覺就消失了。"
+        },
+        {
+          "title": "延伸建議：共用的控制元件高度 token",
+          "how": "定義 --control-height: 40px，輸入框、日期選擇器、按鈕、標籤一律套用，用 height／min-height 而不是靠 padding 撐。",
+          "why": "從規格層面根治，之後新增的工具列元件自然會對齊。"
+        },
+        {
+          "title": "延伸建議：外框一併統一",
+          "how": "統一圓角與邊框粗細（日期框有 1px 邊框與圓角，按鈕是無邊框實心）。",
+          "why": "等高之後，外框差異會變成下一個被看見的不一致。"
+        },
+        {
+          "title": "延伸建議：讓對齊有標準可檢查",
+          "how": "在元件庫／Storybook 加一個「同排控制元件」範例頁，當作視覺回歸測試基準。",
+          "why": "對齊不再靠個人眼力，而是有可檢查的標準。"
+        }
+      ],
+      "flow": [
+        "察覺違和感",
+        "量測高度差與對齊方式",
+        "找出根因",
+        "修正對齊",
+        "提出規格化建議，避免再發生"
+      ],
+      "tech": "",
+      "results": [
+        "工具列上下緣與文字基線對齊，整排看起來乾淨、專業。"
+      ],
+      "takeaway": "修正只要幾行樣式，難的是看得出來。使用者不會說「按鈕少了 4px」，只會說「這系統感覺不太專業」；能把模糊的違和感拆解成可量測、可修正的問題，是我在 UI 上的強項。",
+      "labels": {
+        "context": "背景",
+        "challenges": "觀察到的問題",
+        "decisions": "修正與延伸建議",
+        "how": "做法",
+        "why": "為什麼",
+        "flow": "流程",
+        "tech": "技術實作",
+        "results": "成果",
+        "takeaway": "心得"
+      }
     }
   ],
   "en": [
@@ -698,6 +759,67 @@ window.UX_CASE_STUDIES = {
         "context": "Context",
         "challenges": "Challenges",
         "decisions": "Design decisions",
+        "how": "How",
+        "why": "Why",
+        "flow": "Flow",
+        "tech": "Implementation",
+        "results": "Results",
+        "takeaway": "Takeaway"
+      }
+    },
+    {
+      "id": "phm-toolbar-4px",
+      "title": "Case study: Seeing the 4px nobody else sees",
+      "sub": "ASUS AIS PHM · Event log page · Spotted and fixed a UI detail",
+      "context": "The event log toolbar holds a “Selected: 0 / 0 events” label, a date-range picker, and three buttons — Export, Delete and Alarm Settings. It looked tidy at first glance, yet the row felt “off” and unpolished, and no one could say why.",
+      "challenges": [
+        "The date picker and label were about 44px tall; the three buttons were about 38px.",
+        "The toolbar was top-aligned: top edges matched, bottom edges were 4–6px apart.",
+        "The button text baseline sat slightly higher than the date text — the kind of mismatch people feel but can’t name.",
+        "Root cause: the date picker and buttons each used the UI kit’s default height and padding, with no shared control-height spec, and nobody reviewed the row as one group."
+      ],
+      "figure": {
+        "before": "Top-aligned: buttons 4–6px shorter, bottoms and baselines misaligned",
+        "after": "Fixed: one row, one height, centered, aligned baselines"
+      },
+      "decisions": [
+        {
+          "title": "Fixed: equal heights, centered row",
+          "how": "Matched the button and date-picker heights and centered the toolbar — the fix itself was just a few lines of CSS.",
+          "why": "Once the edges and text baselines lined up, the “off” feeling was gone."
+        },
+        {
+          "title": "Next step: A shared control-height token",
+          "how": "Define --control-height: 40px and apply it to inputs, date pickers, buttons and labels, using height/min-height instead of relying on padding.",
+          "why": "Fixes it at the spec level, so future toolbar controls line up by default."
+        },
+        {
+          "title": "Next step: Unify borders too",
+          "how": "Align corner radius and border width (the date box has a 1px border and rounded corners; the buttons are borderless and solid).",
+          "why": "Once heights match, border differences become the next visible inconsistency."
+        },
+        {
+          "title": "Next step: Make alignment checkable",
+          "how": "Add a “controls in one row” example page to the component library / Storybook as a visual regression baseline.",
+          "why": "Alignment no longer depends on someone’s eye — there is a standard to check against."
+        }
+      ],
+      "flow": [
+        "Notice the off feeling",
+        "Measure heights and alignment",
+        "Find the root cause",
+        "Fix the alignment",
+        "Propose spec-level guards so it doesn’t recur"
+      ],
+      "tech": "",
+      "results": [
+        "The toolbar’s edges and text baselines now line up, and the row reads as clean and professional."
+      ],
+      "takeaway": "The fix took a few lines of CSS — the hard part was seeing it. Users never say “that button is 4px short”; they say “this system doesn’t feel professional.” Turning a vague unease into a measurable, fixable problem is one of my strengths in UI work.",
+      "labels": {
+        "context": "Context",
+        "challenges": "What I observed",
+        "decisions": "The fix and next steps",
         "how": "How",
         "why": "Why",
         "flow": "Flow",
