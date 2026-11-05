@@ -11,7 +11,7 @@ const URL_VISION = "https://www.asus.com/networking-iot-servers/aiot-industrial-
 window.RESUME = {
   zh: {
     name: "Molly Chi",
-    title: "前端工程師",
+    title: "全端工程師（前端 × AI 應用開發）",
     headline: "以使用者體驗為核心的 AI-native 開發者",
     location: "台灣 · 台北／新北",
     email: "momolly1024@gmail.com",
@@ -116,12 +116,12 @@ window.RESUME = {
     },
     // ---- game UI ----
     ui: {
-      hudTitle: "前端工程師",
+      hudTitle: "全端工程師",
       classic: "📄 一般版履歷",
       download: "⬇ 下載 PDF",
       langToggle: "EN",
       eyebrow: "Welcome to",
-      introLead: "嗨，我是 <strong>Molly Chi</strong>，把使用者體驗放第一、帶著 AI agent 一起開發的前端工程師。<br>在小鎮裡走走，走進每棟房子就能看到我的履歷。",
+      introLead: "嗨，我是 <strong>Molly Chi</strong>，把使用者體驗放第一、帶著 AI agent 一起開發的全端工程師。<br>在小鎮裡走走，走進每棟房子就能看到我的履歷。",
       start: "▶ 開始探索",
       justResume: "📄 直接看履歷",
       introHelp: "WASD／方向鍵移動，或直接點地圖 · E／空白鍵進入建築",
@@ -132,7 +132,7 @@ window.RESUME = {
       eduTitle: "學歷・證照", eduSub: "從休閒產業轉職前端，靠的是持續學習", certs: "證照", langs: "語言",
       skillsTitle: "技能工坊", skillsSub: "UX 是我最大的武器，AI agent 是我的主力隊友",
       doneTitle: "🎉 小鎮全部逛完了！", doneSub: "謝謝你花時間認識我",
-      doneText: "如果你正在找一位重視使用者體驗、能把需求拆解落地、並且能駕馭 AI agent 寫 code、同時守住品質的前端工程師，很希望有機會跟你聊聊！",
+      doneText: "如果你正在找一位重視使用者體驗、能把需求拆解落地、並且能駕馭 AI agent 寫 code、同時守住品質的全端工程師，很希望有機會跟你聊聊！",
       progressLabel: (a, b) => `已造訪 ${a} / ${b} 棟建築`,
     },
     places: {
@@ -150,7 +150,7 @@ window.RESUME = {
 
   en: {
     name: "Molly Chi",
-    title: "Frontend Engineer",
+    title: "Full-Stack Engineer (Frontend & AI Applications)",
     headline: "UX-focused, AI-native",
     location: "Taipei, Taiwan",
     email: "momolly1024@gmail.com",
@@ -254,12 +254,12 @@ window.RESUME = {
       labels: { context: "Context", challenges: "Challenges", decisions: "Design decisions", how: "How", why: "Why", flow: "Setup flow", tech: "Implementation", results: "Results", takeaway: "Takeaway" },
     },
     ui: {
-      hudTitle: "Frontend Engineer",
+      hudTitle: "Full-Stack Engineer",
       classic: "📄 Classic résumé",
       download: "⬇ Download PDF",
       langToggle: "中文",
       eyebrow: "Welcome to",
-      introLead: "Hi, I'm <strong>Molly Chi</strong>, a frontend engineer who puts users first and builds with AI agents.<br>Walk around the town and step into each building to read my résumé.",
+      introLead: "Hi, I'm <strong>Molly Chi</strong>, a full-stack engineer who puts users first and builds with AI agents.<br>Walk around the town and step into each building to read my résumé.",
       start: "▶ Start exploring",
       justResume: "📄 Just show me the résumé",
       introHelp: "Move with WASD / arrow keys or tap the map · E / Space to enter",
@@ -270,7 +270,7 @@ window.RESUME = {
       eduTitle: "Education & Certificates", eduSub: "From leisure studies to frontend — powered by continuous learning", certs: "Certificates", langs: "Languages",
       skillsTitle: "Skill Workshop", skillsSub: "UX is my strongest tool; AI agents are my main teammates",
       doneTitle: "🎉 You explored the whole town!", doneSub: "Thanks for taking the time to get to know me",
-      doneText: "If you're looking for a frontend engineer who puts users first, breaks complex requirements into shippable work, and can direct AI agents to write the code without lowering quality — I'd love to talk!",
+      doneText: "If you're looking for a full-stack engineer who puts users first, breaks complex requirements into shippable work, and can direct AI agents to write the code without lowering quality — I'd love to talk!",
       progressLabel: (a, b) => `Visited ${a} of ${b} buildings`,
     },
     places: {
